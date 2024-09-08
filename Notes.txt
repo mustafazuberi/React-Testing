@@ -1,0 +1,9 @@
+----------E2E Testing, Unit Testing & Integration Testing-----------
+- End-to-End (E2E) tests make sure the whole app works correctly by simulating real user actions from start
+  to finish.
+- Unit tests check if individual pieces of code, like a login function, work properly on their own.
+- Integration tests see how different parts of the app, like the login function and the user interface, work 
+  together and if they update the screen as expected.
+
+
+
