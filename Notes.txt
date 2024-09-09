@@ -7,3 +7,13 @@
 
 
 
+
+----------Cypress folder structure looks like this----------
+- cypress/: Main folder containing all Cypress test files.
+- fixtures/: Stores mock data (JSON files) used in tests.
+- integration/: Contains the actual test files (spec files).
+- plugins/: Customizes how Cypress works by adding plugins.
+- support/: Helper files like custom commands and configurations.
+- cypress.json: Configuration file for Cypress settings.
+
+
