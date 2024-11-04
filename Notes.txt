@@ -17,3 +17,91 @@
 - cypress.json: Configuration file for Cypress settings.
 
 
+
+-------------.contains() command----------------------
+always used for the text
+.contains(content)
+.contains(selector, content)
+Usage
+cy.get('.nav').contains('About') // Yield el in .nav containing 'About'
+cy.contains('Hello') // Yield first el in document containing 'Hello'
+
+
+
+-------------.find() command----------------------
+To get the descendant DOM elements of a selected element, use the .find() command.
+
+<parent>
+    <child></child>
+    <child></child>
+    <child></child>
+</parent>
+
+For example, if we select the parent element, we can use .find() on it to locate its child elements.
+
+The .find() command needs to be chained to a .get() command.
+
+cy.get([parent selector]).find([child selector]).contains([text within the selected child element]);
+
+
+
+
+------------------------Hooks in Cypress------------------------
+There are four hooks in cypress
+- BeforeEach
+- Before
+- AfterEach
+- After
+
+beforeEach: This hook is used when we need to run any condition, test setup, or configuration before each test. It will run before every individual test in Cypress.
+
+before: This hook is useful for setting up configurations that only need to be executed once, such as setting up a database connection. For example, if we need to connect to a database to insert data, this setup should be done in the before hook, as it will execute only once.
+
+afterEach: This hook works similarly to beforeEach but executes after each test is completed.
+
+after: If we set up something, such as a configuration or database connection, and no longer need it after the tests are finished, we can use the after hook to close or clean up that setup. This will execute only once at the end of all tests in Cypress.
+
+Example 
+describe('Cypress Hooks Example', () => {
+
+  // This will run once before any tests start
+  before(() => {
+    cy.log('Connecting to the database...'); // Simulate connecting to a database
+    // Imagine connecting to the database here
+  });
+
+  // This will run before each test
+  beforeEach(() => {
+    cy.log('Setting up data for each test...'); // Setup needed data for each test
+    // Imagine inserting necessary data for each test
+  });
+
+  // Test 1
+  it('Test 1: Check if element is visible', () => {
+    cy.log('Running Test 1');
+    cy.visit('/somepage'); // Visit a page
+    cy.get('.element').should('be.visible'); // Check if an element is visible
+  });
+
+  // Test 2
+  it('Test 2: Check if button is clickable', () => {
+    cy.log('Running Test 2');
+    cy.visit('/anotherpage'); // Visit a different page
+    cy.get('.button').click(); // Check if a button can be clicked
+  });
+
+  // This will run after each test
+  afterEach(() => {
+    cy.log('Cleaning up after each test...'); // Cleanup after each test
+    // Imagine removing data or resetting something here
+  });
+
+  // This will run once after all tests finish
+  after(() => {
+    cy.log('Disconnecting from the database...'); // Simulate disconnecting from the database
+    // Imagine closing the database connection here
+  });
+});
+
+
+
